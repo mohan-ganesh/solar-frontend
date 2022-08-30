@@ -57,10 +57,6 @@ export async function getServerSideProps(context) {
 export default function AddressDetails({ data }) {
   return (
     <Layout>
-      <Head>
-        <title>{data.retAddress.id}</title>
-      </Head>
-
       <div>Address ID {data.retAddress.id}</div>
 
       <div>address {data.resJson.result.name}</div>
