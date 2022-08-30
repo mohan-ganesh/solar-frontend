@@ -4,56 +4,66 @@ import Head from "next/head";
 import Layout from "../../components/common/Layout";
 import { STRAPI_API_URL } from "../../config/config";
 import styles from "../../styles/Form.module.css";
-import axios from "axios-observable";
-export function getServerSideProps(context) {
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?key=${process.env.API_KEY}&place_id=${context.params.id}&fields=formatted_address,icon,name,photos,place_id,types,photos,geometry`;
+import axios from "axios";
+export async function getServerSideProps(context) {
+  const mapUrl = `https://maps.googleapis.com/maps/api/place/details/json?key=${process.env.API_KEY}&place_id=${context.params.id}&fields=formatted_address,name,photos,place_id,types,geometry`;
+  const res = await fetch(mapUrl);
+  const resJson = await res.json();
 
-  let resJson = {};
-  let addressId = -1;
-  axios.get(url).subscribe(
-    (response) => {
-      resJson = response.data;
+  let retAddress = {};
 
-      var address = JSON.stringify({
-        name: "Mohan Ganesh",
-        street: "my street",
-        zipcode: 12345,
-        city: "Wexford",
-      });
+  if (resJson.status === "OK") {
+    let addressEndPoint = "`${STRAPI_API_URL}/addresses`";
 
-      axios
-        .post(`${STRAPI_API_URL}/addresses`, {
-          address,
-        })
-        .subscribe(
-          (response) => {
-            addressId = response.data.id;
-          },
-          (error) => console.log(error)
-        );
-    },
-    (error) => console.log(error)
-  );
+    var address = JSON.stringify({
+      name: resJson.result.formatted_address,
+      //resJson.result.geometry.location.lat
+      //resJson.result.geometry.location.lng
+      street: "street",
+      zipcode: 12345,
+      city: "Wexford",
+    });
 
-  //end of api call
+    let customConfig = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const myres = await axios.post(
+      `${STRAPI_API_URL}/addresses`,
+      address,
+      customConfig
+    );
+
+    retAddress = myres.data;
+  }
 
   return {
     props: {
       data: {
         resJson,
-        addressId,
+        retAddress,
       },
     },
   };
 }
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ */
 export default function AddressDetails({ data }) {
   return (
     <Layout>
       <Head>
-        <title>{data.addressId}</title>
+        <title>{data.retAddress.id}</title>
       </Head>
-      <div>address id is {data.addressId}</div>
+
+      <div>Address ID {data.retAddress.id}</div>
+
+      <div>address {data.resJson.result.name}</div>
       <form className={styles.form}>
         <div className={styles.grid}>
           <label htmlFor="name">name</label>
