@@ -11,7 +11,7 @@ export default function SearchAddresses() {
   const { isLoaded, loadError } = useLoadScript(scriptOptions);
   const [autocomplete, setAutocomplete] = useState(null);
   const inputEl = useRef(null);
-
+  const [place, setPlace] = useState("");
   //Handle the keypress for input
   const onKeypress = (e) => {
     // On enter pressed
@@ -33,12 +33,16 @@ export default function SearchAddresses() {
   const onPlaceChanged = (e) => {
     if (autocomplete) {
       const place = autocomplete.getPlace();
+
       if ("place_id" in place) {
-        router.push(`/address/${place.place_id}`);
+        setPlace(`${place.place_id}`);
       }
     }
   };
 
+  function handleInput() {
+    router.push(`/address/${place}`);
+  }
   return (
     <div className="bg-white shadow p-10 rounded">
       {loadError && (
@@ -69,6 +73,10 @@ export default function SearchAddresses() {
           </form>
         </React.Fragment>
       )}
+      <p>&nbsp;</p>
+      <button type="submit" className="btn" onClick={handleInput}>
+        Let's Get Started!!
+      </button>
     </div>
   );
 }
