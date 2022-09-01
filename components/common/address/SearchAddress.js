@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import style from "../../../styles/Address.module.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 /**
  *
  * @returns
@@ -39,9 +41,16 @@ export default function SearchAddresses() {
       }
     }
   };
-
+  /**
+   *
+   */
   function handleInput() {
-    router.push(`/address/${place}`);
+    if (`${place}` === "") {
+      toast.error("Enter a location to procced");
+      return;
+    } else {
+      router.push(`/address/${place}`);
+    }
   }
   return (
     <div className="bg-white shadow p-10 rounded">
@@ -50,9 +59,6 @@ export default function SearchAddresses() {
       )}
       {isLoaded && (
         <React.Fragment>
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 mb-4">
-            Search Place !!
-          </h1>
           <form onSubmit={handleSubmit}>
             <div className="w-full">
               <Autocomplete
@@ -63,8 +69,8 @@ export default function SearchAddresses() {
                 <input
                   ref={inputEl}
                   type="text"
-                  className={style.search}
-                  placeholder="enter address to install solar panel!"
+                  className={style.searchbox}
+                  placeholder="Enter location of the solar panel to be installed"
                   onKeyPress={onKeypress}
                   autoComplete="off"
                 />
@@ -74,9 +80,12 @@ export default function SearchAddresses() {
         </React.Fragment>
       )}
       <p>&nbsp;</p>
-      <button type="submit" className="btn" onClick={handleInput}>
-        Let's Get Started!!
-      </button>
+      <div className="center">
+        <button type="submit" className="btn" onClick={handleInput}>
+          Let's Get Started!!
+        </button>
+      </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -9,8 +9,8 @@
 
 
 
-.search {
-    width: 60%;
+.searchbox {
+    width: 500px;
     height: 3.4rem;
     padding: 0px 1rem;
     font-weight: 400;
@@ -20,7 +20,12 @@
     border: 1px solid rgb(227, 233, 243);
     border-radius: 2px;
     color: rgb(51, 55, 64);
-    background-color: transparent;
-    
+    background-color: transparent;    
     text-align: center;
+}
+
+.start{
+    align-items: center;
+    vertical-align: middle;
+    
 }

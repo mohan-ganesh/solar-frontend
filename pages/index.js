@@ -11,8 +11,16 @@ import SearchAddresses from "../components/common/address/SearchAddress";
 export default function Home() {
   return (
     <Layout>
-      <h1>Get your solar possible savings!</h1>
-      <SearchAddresses />
+      <div className={styles.header}>
+        <h3>Get your solar possible savings!</h3>
+        <p>
+          In order to get a good estimate of cost savings, we'll first need you
+          to enter your address below
+        </p>
+      </div>
+      <div className={styles.search}>
+        <SearchAddresses />
+      </div>
     </Layout>
   );
 }

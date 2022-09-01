@@ -35,7 +35,7 @@ export default function ConfirmationDetails({ quote, address, savings }) {
       <div>address : {address.id}</div>
       <div>savings : {savings.estimate}</div>
       <div>
-        <button type="submit" onClick={handleClick} class="btn">
+        <button type="submit" onClick={handleClick} className="btn">
           Would like another estimates !
         </button>
       </div>
@@ -53,17 +53,14 @@ export async function getServerSideProps({ query: { id }, req }) {
   const resQuoteFetch = await fetch(quoteEndPoint);
   let quote = await resQuoteFetch.json();
 
-  console.log(JSON.stringify(quote));
   //get the addressId from cookie
 
   let { addressId } = parseCookie(req);
-  console.log("Address --" + addressId);
+
   const addressAPI = `${STRAPI_API_URL}/addresses/${addressId}`;
-  console.log(addressAPI);
+
   let resAddressFetch = await fetch(addressAPI);
   let address = await resAddressFetch.json();
-
-  console.log(JSON.stringify(address));
 
   //calculate the savings
   let savings = {
