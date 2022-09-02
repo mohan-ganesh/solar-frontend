@@ -31,13 +31,20 @@ export default function ConfirmationDetails({ quote, address, savings }) {
 
   return (
     <Layout>
-      <div>quotes : {quote.id}</div>
-      <div>address : {address.id}</div>
-      <div>savings : {savings.estimate}</div>
-      <div>
-        <button type="submit" onClick={handleClick} className="btn">
-          Would like another estimates !
-        </button>
+      <div className="center">
+        <div>
+          Great! based on the information provided, estimated average monthly
+          energy bill will be $$$ and estimated area of your solar panel array.
+        </div>
+
+        <div>quotes : {quote.id}</div>
+        <div>address : {address.address}</div>
+        <div>savings : {savings.estimate}</div>
+        <div>
+          <button type="submit" onClick={handleClick} className="btn">
+            Would you like to get estimates for another location !
+          </button>
+        </div>
       </div>
     </Layout>
   );

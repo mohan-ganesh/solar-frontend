@@ -37,12 +37,14 @@ h1 {
 
 .btn {
   display: inline-block;
-  background: #0d6efd;
+  background: #fc7307;
   color: #fff;
   padding: 10px 20px;
   cursor: pointer;
   border: 0;
-  border-radius: 5px;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: .9rem;
 }
 
 .btn:hover {
@@ -73,4 +75,42 @@ h1 {
 
 .btn-icon svg {
   margin-right: 5px;
+}
+
+.card {
+  background-color: #2e4a62;
+  color: white;
+  border-radius: 15px;
+  padding: 40px 50px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.cardHighlight {
+  font-weight: bold;
+}
+
+.center {
+  border: 5px solid transparent;
+  text-align: center;
+  justify-content: center;
+}
+
+.tableContainer{
+  display: inline;
+  padding-right: 14px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.fieldName {
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 4px;
+  width: max-content;
+}
+
+.data {
+  display: table-cell;
+  width: 90%;
 }

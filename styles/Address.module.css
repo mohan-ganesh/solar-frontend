@@ -7,14 +7,12 @@
 
 }
 
-
-
 .searchbox {
     width: 500px;
     height: 3.4rem;
     padding: 0px 1rem;
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: 1.0rem;
     cursor: text;
     outline: 0px;
     border: 1px solid rgb(227, 233, 243);
@@ -27,5 +25,5 @@
 .start{
     align-items: center;
     vertical-align: middle;
-    
 }
+

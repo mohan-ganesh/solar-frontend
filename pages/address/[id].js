@@ -1,6 +1,3 @@
-import Link from "next/link";
-import Head from "next/head";
-
 import Layout from "../../components/common/Layout";
 import { STRAPI_API_URL } from "../../config/config";
 import styles from "../../styles/Form.module.css";
@@ -11,6 +8,11 @@ import { cookie, useCookies } from "react-cookie";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
+/**
+ *
+ * @param {*} context
+ * @returns
+ */
 export async function getServerSideProps(context) {
   const mapUrl = `https://maps.googleapis.com/maps/api/place/details/json?key=${process.env.API_KEY}&place_id=${context.params.id}&fields=formatted_address,name,photos,place_id,types,geometry`;
   const res = await fetch(mapUrl);
@@ -54,7 +56,7 @@ export async function getServerSideProps(context) {
 
 /**
  *
- * @param {*} param0
+ * @param {*} address data
  * @returns
  */
 export default function AddressDetails({ data }) {
@@ -124,62 +126,68 @@ export default function AddressDetails({ data }) {
   //html
   return (
     <Layout>
-      <div>Address ID {data.retAddress.id}</div>
-
-      <div>address {data.resJson.result.name}</div>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.grid}>
-          <label htmlFor="name">Square Foot </label>
-          <input
-            type="text"
-            id="squareFoot"
-            name="squareFoot"
-            onChange={handleInput}
-            value={values.squareFoot}
-          />
+      <div className="center">
+        <div className="card">
+          You have selected the address {data.retAddress.id}
+          <span className="cardHighlight">
+            {data.resJson.result.formatted_address}{" "}
+          </span>
+          formatted address to get the quote. Please provide the additional
+          details to to get the accuarate estimates.
         </div>
 
-        <div className={styles.grid}>
-          <label htmlFor="name">Built year </label>
-          <input
-            type="text"
-            id="year"
-            name="year"
-            onChange={handleInput}
-            value={values.year}
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <label htmlFor="name">
-            Number of members that live in your household:
-          </label>
-          <input
-            type="text"
-            id="member"
-            name="members"
-            onChange={handleInput}
-            value={values.members}
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <label htmlFor="name">Appraximate solar size : </label>
-          <input
-            type="text"
-            id="solarSize"
-            name="solarSize"
-            onChange={handleInput}
-            value={values.solarSize}
-          />
-        </div>
-        <ToastContainer />
-        <div>
-          <button type="submit" className="btn">
-            Get my Estimates
-          </button>
-        </div>
-      </form>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.grid}>
+            <label htmlFor="name">Square Foot </label>
+            <input
+              type="text"
+              id="squareFoot"
+              name="squareFoot"
+              onChange={handleInput}
+              value={values.squareFoot}
+            />
+          </div>
+          <div className={styles.grid}>
+            <label htmlFor="name">Built year </label>
+            <input
+              type="number"
+              id="year"
+              name="year"
+              onChange={handleInput}
+              value={values.year}
+            />
+          </div>
+          <div className={styles.grid}>
+            <label htmlFor="name">
+              Number of members that live in your household
+            </label>
+            <input
+              type="number"
+              id="member"
+              name="members"
+              onChange={handleInput}
+              value={values.members}
+            />
+          </div>
+          <div className={styles.grid}>
+            <label htmlFor="name">Appraximate solar size </label>
+            <input
+              type="text"
+              id="solarSize"
+              name="solarSize"
+              onChange={handleInput}
+              value={values.solarSize}
+            />
+          </div>
+          <ToastContainer />
+          &nbsp;
+          <div>
+            <button type="submit" className="btn">
+              Get my Estimates
+            </button>
+          </div>
+        </form>
+      </div>
     </Layout>
   );
 }
