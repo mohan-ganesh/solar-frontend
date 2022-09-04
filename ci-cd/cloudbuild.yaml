@@ -1,0 +1,39 @@
+steps:
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["config", "set", "project", "${_DEPLOY_PROJECT}"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/${_DEPLOY_PROJECT}/${_SERVICE_NAME}", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/${_DEPLOY_PROJECT}/${_SERVICE_NAME}"]
+    #deploy to specified project as _DEPLOY PROJECT.......
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "run",
+        "deploy",
+        "${_SERVICE_NAME}",
+        "--image",
+        "gcr.io/${_DEPLOY_PROJECT}/${_SERVICE_NAME}",
+        "--region",
+        "${_REGION}",
+        "--platform",
+        "managed",
+        "$_AUTH_OPTION",
+        "--project",
+        "$_DEPLOY_PROJECT",
+        "--memory",
+        "256Mi",
+        "--set-env-vars",
+        "PROJECT_ID=${_BUILD_PROJECT}",
+      ]
+
+substitutions:
+  _BUILD_PROJECT: ""
+  _DEPLOY_PROJECT: ""
+  _SERVICE_NAME: ""
+  _REGION: ""
+  _AUTH_OPTION: ""
+  _MIN_INSTANCES: "0"
+  _BUILD_PROFILE: ""
+
+timeout: 2700s
