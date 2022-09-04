@@ -32,14 +32,9 @@ export default function Home() {
 }
 
 /**
- * Debug in the environment
+ * Process Any Server side events
  */
 export async function getServerSideProps() {
-  console.log("API_KEY=" + process.env.API_KEY);
-  console.log("NEXT_PUBLIC_API_KEY=" + process.env.NEXT_PUBLIC_API_KEY);
-  console.log(
-    "NEXT_PUBLIC_STRAPI_API_URL=" + process.env.NEXT_PUBLIC_STRAPI_API_URL
-  );
   return {
     props: {},
   };

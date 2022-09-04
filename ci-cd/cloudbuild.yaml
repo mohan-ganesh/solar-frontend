@@ -2,7 +2,18 @@ steps:
   - name: "gcr.io/cloud-builders/gcloud"
     args: ["config", "set", "project", "${_DEPLOY_PROJECT}"]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/${_DEPLOY_PROJECT}/${_SERVICE_NAME}", "."]
+    args:
+      [
+        "build",
+        "--build-arg",
+        "build_profile=${_BUILD_PROFILE}",
+        "_API_KEY=${_API_KEY}",
+        "_NEXT_PUBLIC_API_KEY=${_NEXT_PUBLIC_API_KEY}",
+        "_NEXT_PUBLIC_STRAPI_API_URL=${_NEXT_PUBLIC_STRAPI_API_URL}",
+        "-t",
+        "gcr.io/${_DEPLOY_PROJECT}/${_SERVICE_NAME}",
+        ".",
+      ]
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/${_DEPLOY_PROJECT}/${_SERVICE_NAME}"]
     #deploy to specified project as _DEPLOY PROJECT.......
@@ -25,9 +36,6 @@ steps:
         "256Mi",
         "--set-env-vars",
         "PROJECT_ID=${_BUILD_PROJECT}",
-        "API_KEY=${_API_KEY}",
-        "NEXT_PUBLIC_API_KEY=${_NEXT_PUBLIC_API_KEY}",
-        "NEXT_PUBLIC_STRAPI_API_URL=${_NEXT_PUBLIC_STRAPI_API_URL}",
       ]
 
 substitutions:
