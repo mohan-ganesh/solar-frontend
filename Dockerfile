@@ -1,9 +1,11 @@
 FROM node:14.15.4-alpine
 WORKDIR /usr/app
 COPY . .
-ENV API_KEY=$build_profile
+ENV API_KEY=$_API_KEY
 ENV NEXT_PUBLIC_API_KEY=$_NEXT_PUBLIC_API_KEY
 ENV NEXT_PUBLIC_STRAPI_API_URL=$NEXT_PUBLIC_STRAPI_API_URL
+RUN echo "$API_KEY"
+RUN echo "${API_KEY}"
 RUN npm ci --only=production
 RUN npm run build
 CMD ["npm","start"]
