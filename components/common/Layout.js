@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Layout.module.css";
 import Header from "./Header";
 import Footer from "../common/Footer";
+
 /**
- * Common Layout component
- * @param {*} param0
+ * Common Layout component with title, description and keywords
+ * @param {*}
  */
 export default function Layout({ title, keywords, description, children }) {
   const router = useRouter();

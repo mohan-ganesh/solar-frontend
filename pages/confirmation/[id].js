@@ -1,19 +1,14 @@
-import Link from "next/link";
-import Head from "next/head";
-
 import Layout from "../../components/common/Layout";
 import { STRAPI_API_URL } from "../../config/config";
 import styles from "../../styles/Confirmation.module.css";
 import "react-toastify/dist/ReactToastify.css";
-
-import axios from "axios";
 import cookie from "cookie";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
 import { useCookies } from "react-cookie";
+
 /**
- *
+ * Displays the estimates and referece number for follow up
  * @param {*} param0
  * @returns
  */
@@ -30,13 +25,13 @@ export default function ConfirmationDetails({ quote, address, savings }) {
   }
 
   return (
-    <Layout>
+    <Layout title="Confirmation Step">
       <div className="center">
         <div className={styles.cardConfirm}>
           Great! based on the information provided, estimated average
           <b>&nbsp;monthly&nbsp;</b>
-          energy bill will be <b>&nbsp;$$$&nbsp;</b> and estimated area of your
-          solar panel array.
+          energy bill will be <b>&nbsp;{savings.estimate}&nbsp;</b> and
+          estimated area of your solar panel array. {savings.savings}
         </div>
         <div className={styles.cardConfirm}>
           The address is <b>&nbsp;{address.address}&nbsp;</b>. You can refer the
@@ -60,13 +55,19 @@ function parseCookie(req) {
   return cookie.parse(req ? req.headers.cookie || "" : "");
 }
 
+/**
+ * Fetch the quote and address details
+ * Caclucate the savings and possible estimate details
+ * Run against machine model
+ * @param {*} param0
+ * @returns
+ */
 export async function getServerSideProps({ query: { id }, req }) {
   const quoteEndPoint = `${STRAPI_API_URL}/quotes/${id}`;
   const resQuoteFetch = await fetch(quoteEndPoint);
   let quote = await resQuoteFetch.json();
 
   //get the addressId from cookie
-
   let { addressId } = parseCookie(req);
 
   const addressAPI = `${STRAPI_API_URL}/addresses/${addressId}`;
@@ -74,9 +75,15 @@ export async function getServerSideProps({ query: { id }, req }) {
   let resAddressFetch = await fetch(addressAPI);
   let address = await resAddressFetch.json();
 
+  //This is where we use all of the information such as longitude, latidude, address
+  //house member details etc to run againt ML model and get the estimates
+  //I'm just doing random logic here,but one should pass this ML model api
   //calculate the savings
+  let calcEstimate = Math.floor(Math.random() * 100 + 400);
+  let calcSavings = Math.floor(Math.random() * 100 + 500);
   let savings = {
-    estimate: "500",
+    estimate: calcEstimate,
+    savings: calcSavings,
   };
 
   return {

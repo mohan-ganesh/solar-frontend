@@ -10,7 +10,11 @@ import SearchAddresses from "../components/common/address/SearchAddress";
  */
 export default function Home() {
   return (
-    <Layout>
+    <Layout
+      title="Welcome to solar quotes"
+      description="What is solar energy"
+      keywords="solar"
+    >
       <div className={styles.header}>
         <h3>Get your solar possible savings!</h3>
         <div className={styles.cardheader}>

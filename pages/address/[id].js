@@ -9,15 +9,17 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 /**
- *
+ * Displays the selected address details
+ * Offers user to provide additional location and building details
  * @param {*} context
  * @returns
  */
 export async function getServerSideProps(context) {
-  const mapUrl = `https://maps.googleapis.com/maps/api/place/details/json?key=${process.env.API_KEY}&place_id=${context.params.id}&fields=formatted_address,name,photos,place_id,types,geometry`;
+  const mapUrl = `https://maps.googleapis.com/maps/api/place/details/json?key=${process.env.API_KEY}&place_id=${context.params.id}&fields=formatted_address,name,place_id,types,geometry`;
   const res = await fetch(mapUrl);
   const resJson = await res.json();
 
+  //place holder for address
   let retAddress = {};
 
   if (resJson.status === "OK") {
@@ -35,13 +37,13 @@ export async function getServerSideProps(context) {
       },
     };
 
-    const myres = await axios.post(
+    const selectedAddress = await axios.post(
       `${STRAPI_API_URL}/addresses`,
       address,
       customConfig
     );
 
-    retAddress = myres.data;
+    retAddress = selectedAddress.data;
   }
 
   return {
@@ -75,13 +77,11 @@ export default function AddressDetails({ data }) {
   });
 
   //handle the form submit event
-
   const handleSubmit = async (event) => {
     //stop the form from submitting
     event.preventDefault();
 
-    //Gater the data from form
-
+    //Gather the data from form
     const formData = {
       squareFoot: event.target.squareFoot.value,
       year: event.target.year.value,
@@ -96,13 +96,12 @@ export default function AddressDetails({ data }) {
 
     //alert user for empty fields
     if (hasEmptyFields) {
-      toast.error("Please fill in all fields.");
+      toast.error("Please fill in all the fields.");
       return;
     }
 
     //data is good and send it to API
     const quoteEndPoint = `${STRAPI_API_URL}/quotes`;
-
     const quoteResponse = await fetch(quoteEndPoint, {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -125,7 +124,10 @@ export default function AddressDetails({ data }) {
   };
   //html
   return (
-    <Layout>
+    <Layout
+      title={data.resJson.result.formatted_address}
+      keywords="Location additional details"
+    >
       <div className="center">
         <div className="card">
           You have selected the address&nbsp;

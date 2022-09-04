@@ -4,8 +4,10 @@ import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import style from "../../../styles/Address.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+
 /**
  *
+ * Populate the selected address details
  * @returns
  */
 export default function SearchAddresses() {
@@ -41,12 +43,13 @@ export default function SearchAddresses() {
       }
     }
   };
+
   /**
-   *
+   * check for data accuracy
    */
   function handleInput() {
     if (`${place}` === "") {
-      toast.error("Enter a location to procced");
+      toast.error("Enter a location to proceed to next step.");
       return;
     } else {
       router.push(`/address/${place}`);
