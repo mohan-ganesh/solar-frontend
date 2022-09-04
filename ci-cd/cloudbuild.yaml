@@ -25,6 +25,9 @@ steps:
         "256Mi",
         "--set-env-vars",
         "PROJECT_ID=${_BUILD_PROJECT}",
+        "API_KEY=${_BUILD_API_KEY}",
+        "NEXT_PUBLIC_API_KEY=${_BUILD_NEXT_PUBLIC_API_KEY}",
+        "NEXT_PUBLIC_STRAPI_API_URL=${_BUILD_NEXT_PUBLIC_STRAPI_API_URL}",
       ]
 
 substitutions:
@@ -35,5 +38,8 @@ substitutions:
   _AUTH_OPTION: ""
   _MIN_INSTANCES: "0"
   _BUILD_PROFILE: ""
+  _API_KEY: ""
+  _NEXT_PUBLIC_API_KEY: ""
+  _NEXT_PUBLIC_STRAPI_API_URL: ""
 
 timeout: 2700s
