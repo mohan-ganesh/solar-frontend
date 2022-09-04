@@ -13,10 +13,12 @@ export default function Home() {
     <Layout>
       <div className={styles.header}>
         <h3>Get your solar possible savings!</h3>
-        <p>
-          In order to get a good estimate of cost savings, we'll first need you
-          to enter your address below
-        </p>
+        <div className={styles.cardheader}>
+          <p>
+            In order to get a good estimate of cost savings, we'll first need
+            you to enter your address below
+          </p>
+        </div>
       </div>
       <div className={styles.search}>
         <SearchAddresses />

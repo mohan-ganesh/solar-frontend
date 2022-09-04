@@ -3,14 +3,14 @@ import Head from "next/head";
 
 import Layout from "../../components/common/Layout";
 import { STRAPI_API_URL } from "../../config/config";
-import styles from "../../styles/Form.module.css";
+import styles from "../../styles/Confirmation.module.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+
 import axios from "axios";
 import cookie from "cookie";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { route } from "next/dist/next-server/server/router";
+
 import { useCookies } from "react-cookie";
 /**
  *
@@ -32,14 +32,19 @@ export default function ConfirmationDetails({ quote, address, savings }) {
   return (
     <Layout>
       <div className="center">
-        <div>
-          Great! based on the information provided, estimated average monthly
-          energy bill will be $$$ and estimated area of your solar panel array.
+        <div className={styles.cardConfirm}>
+          Great! based on the information provided, estimated average
+          <b>&nbsp;monthly&nbsp;</b>
+          energy bill will be <b>&nbsp;$$$&nbsp;</b> and estimated area of your
+          solar panel array.
         </div>
-
-        <div>quotes : {quote.id}</div>
-        <div>address : {address.address}</div>
-        <div>savings : {savings.estimate}</div>
+        <div className={styles.cardConfirm}>
+          The address is <b>&nbsp;{address.address}&nbsp;</b>. You can refer the
+          quote id <b>&nbsp;{quote.id}&nbsp;</b> to get more details. We would
+          like to run this infomation against our machine learning model to get
+          more accuare details.
+        </div>
+        &nbsp; &nbsp;
         <div>
           <button type="submit" onClick={handleClick} className="btn">
             Would you like to get estimates for another location !

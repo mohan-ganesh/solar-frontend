@@ -86,6 +86,16 @@ h1 {
   position: relative;
 }
 
+.cardHeader {
+border: 1px solid rgb(207,217,224);
+justify-content: space-between;
+align-items: center;
+background: #fff;
+color: #333;
+
+padding: 0 30px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 .cardHighlight {
   font-weight: bold;
 }

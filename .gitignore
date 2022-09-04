@@ -38,3 +38,6 @@ next-env.d.ts
 
 #linting
 .eslintrc.json
+
+#personal
+worksheet.txt

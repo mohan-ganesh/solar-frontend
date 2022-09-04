@@ -128,15 +128,19 @@ export default function AddressDetails({ data }) {
     <Layout>
       <div className="center">
         <div className="card">
-          You have selected the address {data.retAddress.id}
+          You have selected the address&nbsp;
           <span className="cardHighlight">
-            {data.resJson.result.formatted_address}{" "}
+            {data.resJson.result.formatted_address}
           </span>
-          formatted address to get the quote. Please provide the additional
-          details to to get the accuarate estimates.
+          &nbsp;to get the quote. Please provide the additional details to to
+          get the accuarate estimates.
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form
+          onSubmit={handleSubmit}
+          className={styles.form}
+          autoComplete="0ff"
+        >
           <div className={styles.grid}>
             <label htmlFor="name">Square Foot </label>
             <input
