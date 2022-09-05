@@ -1,6 +1,6 @@
 # Solar Quote (Frontend)
 
-Built using Nextjs website for Solar Quotes. This site uses Strapi as a backend. The corresponding repo for that
+Built using Nextjs framework for Solar Quotes. This site uses Strapi as a backend. The corresponding repo for that
 located [here](https://github.com/mohan-ganesh/solar-strapi)
 
 The live site is avilable at (https://solar.mohanganesh.com)
@@ -13,6 +13,7 @@ Create a .env.local file and add your Google API keys and point to Strapi Backen
 API_KEY="xxxxxxxxx"
 NEXT_PUBLIC_API_KEY="xxxxxxxxx"
 NEXT_PUBLIC_STRAPI_API_URL="xxxxxxxxx"
+NEXT_PUBLIC_MAPBOX_API_TOKEN="xxxxxxxxx"
 ```
 
 ### Run the Server

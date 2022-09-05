@@ -13,6 +13,8 @@ steps:
         "_NEXT_PUBLIC_API_KEY=${_NEXT_PUBLIC_API_KEY}",
         "--build-arg",
         "_NEXT_PUBLIC_STRAPI_API_URL=${_NEXT_PUBLIC_STRAPI_API_URL}",
+        "--build-arg",
+        "_NEXT_PUBLIC_MAPBOX_API_TOKEN=${_NEXT_PUBLIC_MAPBOX_API_TOKEN}",
         "-t",
         "gcr.io/${_DEPLOY_PROJECT}/${_SERVICE_NAME}",
         ".",
@@ -52,5 +54,6 @@ substitutions:
   _API_KEY: ""
   _NEXT_PUBLIC_API_KEY: ""
   _NEXT_PUBLIC_STRAPI_API_URL: ""
+  _NEXT_PUBLIC_MAPBOX_API_TOKEN: ""
 
 timeout: 2700s
