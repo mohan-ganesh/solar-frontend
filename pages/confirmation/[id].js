@@ -30,19 +30,34 @@ export default function ConfirmationDetails({ quote, address, savings }) {
         <div className={styles.cardConfirm}>
           Great! based on the information provided, estimated average
           <b>&nbsp;monthly&nbsp;</b>
-          energy bill will be <b>&nbsp;{savings.estimate}&nbsp;</b> and
-          estimated area of your solar panel array. {savings.savings}
+          savings bill will be
+          <b>
+            &nbsp;<span className={styles.green}>{savings.savings}</span>
+            &nbsp;$&nbsp;
+          </b>{" "}
+          and estimated cost to install solar panel array would be
+          <b>
+            &nbsp;<span className={styles.green}>{savings.estimate}</span>
+            &nbsp;$&nbsp;
+          </b>
+          .
         </div>
         <div className={styles.cardConfirm}>
-          The address is <b>&nbsp;{address.address}&nbsp;</b>. You can refer the
-          quote id <b>&nbsp;{quote.id}&nbsp;</b> to get more details. We would
-          like to run this infomation against our machine learning model to get
-          more accuare details.
+          The address is{" "}
+          <b>
+            &nbsp;<span className={styles.green}>{address.address}</span>&nbsp;
+          </b>
+          . You can refer the quote id
+          <b>
+            &nbsp;<span className={styles.green}>{quote.id}</span>&nbsp;
+          </b>{" "}
+          to get more details. We would like to run this infomation against our
+          machine learning model to get more accuare details.
         </div>
         &nbsp; &nbsp;
         <div>
           <button type="submit" onClick={handleClick} className="btn">
-            Would you like to get estimates for another location !
+            Would you like to get estimates for another location
           </button>
         </div>
       </div>

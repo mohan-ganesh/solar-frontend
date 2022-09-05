@@ -73,7 +73,7 @@ export default function SearchAddresses() {
                   ref={inputEl}
                   type="text"
                   className={style.searchbox}
-                  placeholder="Indicate location for solar panel would be installed."
+                  placeholder="Enter a location"
                   onKeyPress={onKeypress}
                   autoComplete="off"
                 />
@@ -85,7 +85,7 @@ export default function SearchAddresses() {
       <p>&nbsp;</p>
       <div className="center">
         <button type="submit" className="btn" onClick={handleInput}>
-          Let's Get Started!!
+          Let's Get Started
         </button>
       </div>
       <ToastContainer />

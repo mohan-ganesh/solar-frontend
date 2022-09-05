@@ -122,6 +122,30 @@ export default function AddressDetails({ data }) {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
+
+  /**
+   *
+   * @param {*} e
+   */
+  const goBack = (e) => {
+    router.push("/");
+  };
+  /*
+  const location = {
+    address: "1600 Amphitheatre Parkway, Mountain View, california.",
+    lat: 37.42216,
+    lng: -122.08427,
+  };*/
+
+  const location = {
+    center: {
+      lat: `${data.resJson.result.geometry.location.lat}`,
+      lng: `${data.resJson.result.geometry.location.lng}`,
+    },
+    zoom: 2,
+    address: `${data.resJson.result.formatted_address}`,
+  };
+
   //html
   return (
     <Layout
@@ -188,6 +212,10 @@ export default function AddressDetails({ data }) {
           <ToastContainer />
           &nbsp;
           <div>
+            <button type="button" className="btn" onClick={goBack}>
+              Change the location
+            </button>
+            &nbsp;{" "}
             <button type="submit" className="btn">
               Get my Estimates
             </button>

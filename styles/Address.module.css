@@ -8,7 +8,8 @@
 }
 
 .searchbox {
-    width: 500px;
+    width: 450px;
+    max-width: 720px;
     height: 3.4rem;
     padding: 0px 1rem;
     font-weight: 400;
@@ -20,6 +21,9 @@
     color: rgb(51, 55, 64);
     background-color: transparent;    
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+
 }
 
 .start{
