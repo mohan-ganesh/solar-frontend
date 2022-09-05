@@ -6,7 +6,7 @@ import cookie from "cookie";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
-
+import MapItem from "../../components/MapItem";
 /**
  * Displays the estimates and referece number for follow up
  * @param {*} param0
@@ -56,6 +56,8 @@ export default function ConfirmationDetails({ quote, address, savings }) {
         </div>
         &nbsp; &nbsp;
         <div>
+          <MapItem locate={address} />
+          <br />
           <button type="submit" onClick={handleClick} className="btn">
             Would you like to get estimates for another location
           </button>

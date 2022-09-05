@@ -9,15 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@iconify/icons-mdi": "^1.2.29",
+    "@iconify/react": "^3.2.2",
     "@react-google-maps/api": "^1.9.7",
     "axios": "^0.27.2",
-    "axios-observable": "^1.5.0",
     "cookie": "^0.5.0",
+    "google-map-react": "^2.2.0",
     "next": "^9.2.0",
-    "react": "^16.12.0",
     "react-cookie": "^4.1.1",
-    "react-dom": "^16.12.0",
-    "react-toastify": "^7.0.3"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-toastify": "^7.0.3",
+    "react-map-gl": "6.1.12",
+    "react-geocode": "^0.2.3",
+    "mapbox-gl": "^2.9.2"
   },
   "devDependencies": {
     "eslint": "8.23.0",
