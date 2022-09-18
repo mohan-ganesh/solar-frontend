@@ -196,11 +196,11 @@ export default function AddressDetails({ data }) {
           </div>
           <ToastContainer />
           &nbsp;
-          <div>
+          <div className="btnContainer">
             <button type="button" className="btn" onClick={goBack}>
               Change the location
             </button>
-            &nbsp;
+
             <button type="submit" className="btn">
               Get my Estimates
             </button>

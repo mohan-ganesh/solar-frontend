@@ -29,16 +29,20 @@ export default function ConfirmationDetails({ quote, address, savings }) {
       <div className="center">
         <div className={styles.cardConfirm}>
           Great! based on the information provided, estimated average
-          <b>&nbsp;monthly&nbsp;</b>
+          <b>
+            <span className={styles.green}>&nbsp;monthly&nbsp;</span>
+          </b>
           savings bill will be
           <b>
-            &nbsp;<span className={styles.green}>{savings.savings}</span>
-            &nbsp;$&nbsp;
-          </b>{" "}
+            &nbsp;
+            <span className={styles.green}>{savings.savings}&nbsp;$&nbsp;</span>
+          </b>
           and estimated cost to install solar panel array would be
           <b>
-            &nbsp;<span className={styles.green}>{savings.estimate}</span>
-            &nbsp;$&nbsp;
+            &nbsp;
+            <span className={styles.green}>
+              {savings.estimate} &nbsp;$&nbsp;
+            </span>
           </b>
           .
         </div>
@@ -50,7 +54,7 @@ export default function ConfirmationDetails({ quote, address, savings }) {
           . You can refer the quote id
           <b>
             &nbsp;<span className={styles.green}>{quote.id}</span>&nbsp;
-          </b>{" "}
+          </b>
           to get more details. We would like to run this infomation against our
           machine learning model to get more accuare details.
         </div>
