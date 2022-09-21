@@ -197,8 +197,8 @@ export default function AddressDetails({ data }) {
           <ToastContainer />
           &nbsp;
           <div className="btnContainer">
-            <button type="button" className="btn" onClick={goBack}>
-              Change the location
+            <button type="button" className="btnReverse" onClick={goBack}>
+              Back
             </button>
 
             <button type="submit" className="btn">

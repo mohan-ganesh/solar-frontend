@@ -62,7 +62,7 @@ export default function ConfirmationDetails({ quote, address, savings }) {
         <div>
           <MapItem locate={address} />
           <br />
-          <button type="submit" onClick={handleClick} className="btn">
+          <button type="submit" onClick={handleClick} className="btnReverse">
             Would you like to get estimates for another location
           </button>
         </div>
