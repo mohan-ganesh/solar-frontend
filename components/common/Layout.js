@@ -14,6 +14,15 @@ export default function Layout({ title, keywords, description, children }) {
     <div>
       <Head>
         <title>{title}</title>
+        <meta
+          http-equiv="content-type"
+          content="text/html; charset=utf-8"
+        ></meta>
+        <meta name="author" content="Ganesh, Mohan" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
       </Head>
