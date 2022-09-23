@@ -23,6 +23,7 @@ export default function Layout({ title, keywords, description, children }) {
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         ></meta>
+        <link rel="canonical" href="https://solar.mohanganesh.com/" />
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
       </Head>
